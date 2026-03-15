@@ -1,28 +1,21 @@
-# STATE_SUMMARY.md
+### `03_LEVITICUS/STATE_SUMMARY.md`
 
-This scaffold placeholder does not count as a generated continuity block until
-it is replaced with schema-conforming state content.
+**Active Phase**
+1
 
-This file records the current execution state of the project.
+**Roadmap Version**
+v2
 
-Purpose
-Allow deterministic project continuation across sessions or agents.
+**Completed Phases**
 
-Schema
-This file must conform to:
+**Current Work Artifact**
+02_EXODUS/runtime/integrations/chat_api_client.js
 
-`03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
+**Open Risks**
+- Phase 1 runtime artifacts under `02_EXODUS/runtime/` are not yet present, blocking exit criteria progression.
+- Local service availability at `127.0.0.1` endpoints may block command-based exit criteria once artifact creation begins.
 
-Lifecycle
+**Deferred Registry**
 
-roadmap execution
--> state update
--> resume execution
-
-Notes
-
-* The state summary is updated after phase completion.
-* This file determines the current project position.
-* Agents must consult this file before executing work.
-
-If this file is empty, execution has not yet begun.
+**Next Deterministic Objective**
+Create file `02_EXODUS/runtime/integrations/chat_api_client.js` to satisfy the first unmet Active Phase exit criterion: `File exists at 02_EXODUS/runtime/integrations/chat_api_client.js.`
