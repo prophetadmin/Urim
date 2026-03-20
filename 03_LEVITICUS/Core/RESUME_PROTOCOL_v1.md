@@ -24,6 +24,11 @@ The canonical project root is the directory containing:
 
 All artifact paths referenced during resume are resolved relative to that root.
 
+When required canonical artifacts are present under the canonical project root,
+they must be read directly from the filesystem.
+Do not request pasted copies of local canonical artifacts from chat when
+filesystem access is available.
+
 ## 3. State Summary Integrity Check
 
 Validate `03_LEVITICUS/STATE_SUMMARY.md` contains exactly one continuity block

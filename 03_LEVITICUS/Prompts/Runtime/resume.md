@@ -33,6 +33,10 @@ Must halt on Active Phase conflicts.
 Must halt if the objective does not advance one unmet Exit Criterion.
 Must not select phase advancement for an implementation phase before canonical
 receipt criteria are satisfied.
+Must resolve required local canonical artifacts from the workspace filesystem
+when available.
+Must not request the user to paste local roadmap, state-summary, or receipt
+artifacts that are readable from the workspace.
 Must not rely on unstated chat memory.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 

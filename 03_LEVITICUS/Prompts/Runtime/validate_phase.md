@@ -36,6 +36,10 @@ Must require direct proof for each criterion.
 Must fail criteria when referenced files, commands, or anchors are missing.
 Must not treat ephemeral validation output as a substitute for
 `/record_phase_completion`.
+Must resolve required local canonical artifacts from the workspace filesystem
+when available.
+Must not request the user to paste local roadmap, state-summary, or receipt
+artifacts that are readable from the workspace.
 Must not use qualitative completion language.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 

@@ -41,6 +41,10 @@ the receipt.
 Must not treat the receipt artifact itself as proof of non-receipt criteria.
 Must not write a receipt when any non-receipt Exit Criterion is unmet.
 Must not modify the latest active roadmap artifact or `03_LEVITICUS/STATE_SUMMARY.md`.
+Must resolve required local canonical artifacts from the workspace filesystem
+when available.
+Must not request the user to paste local roadmap, state-summary, or receipt
+artifacts that are readable from the workspace.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes

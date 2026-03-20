@@ -34,6 +34,10 @@ Must treat canonical implementation-phase receipt criteria as ordinary required
 Exit Criteria.
 Must not mark an implementation phase complete when non-receipt criteria are
 true but required receipt criteria remain unmet.
+Must resolve required local canonical artifacts from the workspace filesystem
+when available.
+Must not request the user to paste local roadmap, state-summary, or receipt
+artifacts that are readable from the workspace.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes

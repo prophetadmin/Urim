@@ -43,6 +43,10 @@ Must halt on Active Phase conflicts.
 Must not write a phase receipt unless all non-receipt Exit Criteria for that
 implementation phase are directly proven.
 Must not modify the latest active roadmap artifact.
+Must resolve required local canonical artifacts from the workspace filesystem
+when available.
+Must not request the user to paste local roadmap, state-summary, or receipt
+artifacts that are readable from the workspace.
 Must not rely on unstated chat memory.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
