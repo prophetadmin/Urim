@@ -1,5 +1,8 @@
 $ErrorActionPreference = "Stop"
 
+# seed-derived planning artifacts are validated against 01_GENESIS/PROJECT_SEED.md
+# regeneration and traceability from the seed-defined contract
+
 function Assert-True {
   param(
     [bool]$Condition,
@@ -37,7 +40,7 @@ function Invoke-NodeInline {
     [string]$Description = "Node validation"
   )
 
-  $tempDir = Join-Path $PSScriptRoot ".tmp"
+  $tempDir = Join-Path $PSScriptRoot "_tmp"
   New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
   $tempFile = Join-Path $tempDir ("urim_validation_" + [Guid]::NewGuid().ToString("N") + ".js")
   try {

@@ -32,6 +32,7 @@ directory containing `01_GENESIS/`, `02_EXODUS/`, and `03_LEVITICUS/`.
 
 - /create_map_v2
 - /derive_requirements
+- /realize_components
 - /seed
 - /status_sync
 - /resume
@@ -63,11 +64,13 @@ Command Name
 
 Purpose
 Transform the primary Genesis idea artifact into `01_GENESIS/PROJECT_SEED.md`
-by applying `03_LEVITICUS/Core/GENESIS_SEED_PROMPT_v1.md`.
+by applying `03_LEVITICUS/Core/GENESIS_SEED_PROMPT_v1.md` and enforcing
+`03_LEVITICUS/Core/PROJECT_SEED_SCHEMA_v1.md`.
 
 Required Inputs
 `01_GENESIS/IDEA.md`
 `03_LEVITICUS/Core/GENESIS_SEED_PROMPT_v1.md`
+`03_LEVITICUS/Core/PROJECT_SEED_SCHEMA_v1.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/Prompts/Bootstrap/seed.md`
 
@@ -77,20 +80,30 @@ Project title override
 Output Contract
 Output must be written only to `01_GENESIS/PROJECT_SEED.md` in overwrite-only
 mode.
-Output must conform exactly to the structure required by
-`03_LEVITICUS/Core/GENESIS_SEED_PROMPT_v1.md`.
+Output must conform exactly to
+`03_LEVITICUS/Core/PROJECT_SEED_SCHEMA_v1.md`.
 No commentary is permitted outside the required seed content.
 
 Guardrails
 Must derive seed content only from the selected Genesis idea artifact.
 Must not emit roadmap phases, slash commands, resume logic, or execution
 sequencing.
+Must not blend inherited foundation, prerequisite normalization, product
+surfaces, product experience invariants, runtime anchors, and behavior rules
+into one generic seed statement when they are structurally distinct in the
+idea.
+Must preserve stylistic, presentation, and anti-pattern language when it
+materially constrains the finished product shape.
 Must halt if no Genesis idea artifact exists.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
 Missing required input artifact.
 Seed output violates required structure.
+Structurally distinct foundation, normalization, surface, product-experience,
+runtime, or behavior content blended into non-separable seed statements.
+Materially constraining product experience language omitted or collapsed into
+generic seed prose.
 Roadmap or execution content leaked into seed.
 Output path or filename mismatch.
 
@@ -132,6 +145,8 @@ Must not invent frameworks, file layouts, runtimes, or command names not
 grounded in the seed.
 Must not collapse seed-declared product surfaces into internal-only module
 requirements.
+Must not collapse seed-declared product experience invariants into generic
+surface-exists requirements.
 Must not collapse build-distinct component boundaries into one generic
 component.
 Must preserve exclusions and non-goals verbatim when present in the seed.
@@ -142,8 +157,11 @@ Failure Modes
 Missing required input artifact.
 Requirements ledger violates required structure.
 Seed included-scope or constraint item omitted from mandatory requirements.
+Seed product experience invariant omitted from mandatory requirements.
 Seed-declared product surface omitted or collapsed into infrastructure-only
 requirements.
+Seed-declared product experience invariant collapsed into generic app-surface
+coverage.
 Mandatory requirement lacks component decomposition.
 Build-distinct architecture collapsed into one generic component.
 Output path or filename mismatch.
@@ -168,6 +186,8 @@ Transform `01_GENESIS/PROJECT_SEED.md` and
 Required Inputs
 `01_GENESIS/PROJECT_SEED.md`
 `01_GENESIS/REQUIREMENTS_LEDGER.md`
+`01_GENESIS/COMPONENT_REALIZATION_MAP.md`
+`03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md`
 `03_LEVITICUS/Core/REQUIREMENTS_LEDGER_SCHEMA_v1.md`
 `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`
 `03_LEVITICUS/Core/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`
@@ -194,14 +214,37 @@ No commentary is permitted outside schema-valid roadmap content.
 
 Guardrails
 Must derive roadmap content only from `01_GENESIS/PROJECT_SEED.md` and
-`01_GENESIS/REQUIREMENTS_LEDGER.md`.
+`01_GENESIS/REQUIREMENTS_LEDGER.md` and
+`01_GENESIS/COMPONENT_REALIZATION_MAP.md`.
+Must execute roadmap generation as deterministic transformation rather than
+alternative architecture exploration.
 Must not assume a project type, app shape, framework, runtime, or file layout
 not explicitly supported by the seed.
+Must preserve seed-declared product experience invariants through concrete
+artifact and validation mapping rather than collapsing them into generic
+surface-exists coverage.
+Must preserve realization-map-defined artifact ownership and non-collapse
+boundaries during roadmap construction.
+If the planning artifacts contain deterministic bootstrap-proof obligations
+rooted in `01_GENESIS/PROJECT_SEED.md`, must include a terminal validation
+phase dedicated to explicit bootstrap determinism proof rather than generic
+validation-harness execution.
 Must enforce code-first roadmap output where `PHASE 1` is `implementation` and
 mandatory mappings include non-`.md` artifacts under `02_EXODUS/`.
 Must enforce criteria grammar and phase-type rules from
 `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.
-Must halt if seed, requirements ledger, or schema conformance fails.
+Must begin roadmap artifact writing with one direct in-place update strategy
+rather than whole-file replacement or replacement-form retry sequences.
+Must not attempt one large add-file patch when creating a new roadmap version.
+Must initialize a new roadmap version with a minimal schema-valid skeleton and
+then fill it through bounded section-level writes in deterministic order.
+Must not attempt a monolithic shell-command write for the full roadmap body.
+Must write roadmap metadata, coverage matrices, and phase blocks through
+bounded section-level writes from the start.
+Must not narrate patch retries, fallback write behavior, or internal edit
+strategy unless the final roadmap write fails.
+Must halt if seed, requirements ledger, component realization map, or schema
+conformance fails.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
@@ -219,6 +262,14 @@ coverage.
 Component block lacks phase, artifact, dependency, or validation coverage.
 Roadmap omits required code-first mapping to non-`.md` artifacts under
 `02_EXODUS/`.
+Mandatory product-experience requirement mapped only to generic surface
+existence coverage without concrete artifact or executable proof.
+Realization-map primary artifact omitted from roadmap produced artifacts.
+Build-distinct realization blocks collapsed into identical roadmap artifact
+coverage.
+Deterministic bootstrap-proof obligations present in planning artifacts but no
+terminal validation phase preserves explicit seed-to-planning proof anchored
+to `01_GENESIS/PROJECT_SEED.md`.
 `PHASE 1` is not `implementation`.
 Implementation phase can complete using documentation-only criteria.
 Validation phase lacks end-to-end command evidence.
@@ -240,6 +291,7 @@ roadmap and state-schema constraints.
 Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
+`03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/Prompts/Runtime/status_sync.md`
@@ -260,6 +312,9 @@ Guardrails
 Must not modify roadmap content.
 Must not include historical narrative.
 Must derive state from roadmap exit-criteria evaluation.
+Must treat canonical phase receipt criteria as ordinary required Exit Criteria.
+Must not mark a phase complete when non-receipt criteria are true but required
+receipt criteria remain unmet.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
@@ -268,6 +323,7 @@ Roadmap version mismatch between state summary and latest active roadmap artifac
 Multiple Current Work Artifact fields.
 Completed Phases containing non-identifiers.
 Objective not tied to unmet Active Phase Exit Criteria.
+Phase advanced without required canonical phase receipt criteria satisfied.
 
 Deterministic Advancement Rule
 `/status_sync` is complete only when `03_LEVITICUS/STATE_SUMMARY.md` validates
@@ -286,6 +342,7 @@ Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
 `03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/Prompts/Runtime/resume.md`
@@ -306,6 +363,8 @@ Guardrails
 Must halt on state-summary schema violations.
 Must halt on Active Phase conflicts or missing phases.
 Must halt if selected objective does not advance one unmet Exit Criterion.
+Must not select phase advancement when required canonical phase receipt
+criteria for the Active Phase remain unmet.
 Must not rely on unstated chat memory.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
@@ -315,6 +374,7 @@ Roadmap version mismatch between state summary and latest active roadmap artifac
 Completed Phases containing descriptive text.
 Cross-phase editing attempt.
 Premature phase advancement attempt.
+Phase advancement attempted before required canonical receipt criteria are met.
 
 Deterministic Advancement Rule
 `/resume` is complete only when one objective advances exactly one unmet Exit
@@ -334,6 +394,7 @@ Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
 `03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/Prompts/Runtime/validate_phase.md`
@@ -350,6 +411,8 @@ Final PASS requires all criteria PASS.
 If FAIL, include exactly one Next Deterministic Objective for the first unmet
 criterion.
 Output is ephemeral and must not be written to project artifacts.
+Ephemeral validation output does not replace any canonical phase receipt
+required for completion.
 
 Guardrails
 Must not modify any artifact.
@@ -383,9 +446,11 @@ Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
 `03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/Prompts/Runtime/resume.md`
+`03_LEVITICUS/Prompts/Runtime/record_phase_completion.md`
 `03_LEVITICUS/Prompts/Runtime/status_sync.md`
 `03_LEVITICUS/Prompts/Runtime/resume_phase.md`
 
@@ -396,28 +461,37 @@ Explicit phase conflict override declared before execution
 Output Contract
 Must preserve atomic `/resume` behavior for each internal step.
 Must execute `/resume` repeatedly against one Active Phase only.
+When the next unmet criterion for the Active Phase is the canonical phase
+receipt criterion, must execute `/record_phase_completion` before
+continuing the loop.
 Must stop looping when the starting Active Phase is listed in Completed Phases
 or Active Phase increments.
 Must run `/status_sync` exactly once after loop completion.
 Must emit updated `03_LEVITICUS/STATE_SUMMARY.md` conforming to
 `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`.
 Must not modify the latest active roadmap artifact.
+Must fail if final normalization leaves the starting Active Phase unresolved.
 
 Guardrails
 Must halt immediately if any internal `/resume` call fails.
+Must halt immediately if `/record_phase_completion` fails.
 Must halt on state-summary schema violations.
 Must halt on Active Phase conflicts.
 Must not skip unmet Exit Criteria.
+Must not write a phase receipt unless all non-receipt Exit Criteria for that
+phase are directly proven.
 Must not blend execution across multiple phases in a single `/resume` step.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
 Internal `/resume` call failed.
+`/record_phase_completion` failed.
 State summary schema deviation.
 Roadmap version mismatch between state summary and latest active roadmap artifact.
 Active Phase mismatch between roadmap and state summary.
 Iteration cap reached before phase completion.
 Cross-phase editing attempt.
+Starting Active Phase remained active after final normalization.
 
 Deterministic Advancement Rule
 `/resume_phase` is complete only when the starting Active Phase has been
@@ -437,6 +511,8 @@ acceptance cannot pass on documentation-only implementation criteria.
 Required Inputs
 `01_GENESIS/PROJECT_SEED.md`
 `01_GENESIS/REQUIREMENTS_LEDGER.md`
+`01_GENESIS/COMPONENT_REALIZATION_MAP.md`
+`03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md`
 `03_LEVITICUS/Core/REQUIREMENTS_LEDGER_SCHEMA_v1.md`
 `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
@@ -453,25 +529,92 @@ Output is ephemeral and must not be written to project artifacts.
 
 Guardrails
 Must fail on any v2 schema deviation, requirements-ledger schema deviation,
-missing requirements coverage mapping, or missing seed coverage mapping.
+component realization map schema deviation, missing requirements coverage
+mapping, missing realization preservation, or missing seed coverage mapping.
+Must fail any roadmap where `REQ-56` or `COMP-14` is present but `PHASE 4`
+lacks explicit deterministic seed-to-planning proof against
+`01_GENESIS/PROJECT_SEED.md`.
 Must fail any implementation phase that can complete using only `.md`
 artifacts plus file-exists or anchor checks.
-Must not modify roadmap, seed, requirements ledger, state, or implementation
-artifacts.
+Must not modify roadmap, seed, requirements ledger, component realization map,
+state, or implementation artifacts.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
 Missing required input artifact.
 Requirements ledger does not conform to
 `03_LEVITICUS/Core/REQUIREMENTS_LEDGER_SCHEMA_v1.md`.
+Component realization map does not conform to
+`03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md`.
 Target roadmap does not conform to `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.
 Requirements Coverage Matrix missing or incomplete.
 Component Coverage Matrix missing or incomplete.
 Seed Coverage Matrix missing or incomplete.
 Mandatory requirements-ledger item lacks artifact or validation coverage.
 Component block lacks artifact, dependency, or validation coverage.
+Realization-map primary artifact omitted from roadmap produced artifacts.
+Build-distinct realization blocks collapsed into identical roadmap artifact
+coverage.
+`REQ-56` or `COMP-14` present but `PHASE 4` lacks explicit bootstrap
+determinism proof anchored to `01_GENESIS/PROJECT_SEED.md`.
 Implementation phase lacks required command-based evidence.
 Validation phase lacks required end-to-end command evidence.
+
+## 16. /realize_components
+
+Command Name
+/realize_components
+
+Purpose
+Transform `01_GENESIS/PROJECT_SEED.md` and
+`01_GENESIS/REQUIREMENTS_LEDGER.md` into
+`01_GENESIS/COMPONENT_REALIZATION_MAP.md` by applying
+`03_LEVITICUS/Core/COMPONENT_REALIZATION_PROMPT_v1.md` and enforcing
+`03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md`.
+
+Required Inputs
+`01_GENESIS/PROJECT_SEED.md`
+`01_GENESIS/REQUIREMENTS_LEDGER.md`
+`03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md`
+`03_LEVITICUS/Core/COMPONENT_REALIZATION_PROMPT_v1.md`
+`03_LEVITICUS/Core/REQUIREMENTS_LEDGER_SCHEMA_v1.md`
+`03_LEVITICUS/Core/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Prompts/Bootstrap/realize_components.md`
+
+Optional Inputs
+Explicit realization focus override declared before execution
+
+Output Contract
+Output must be written only to `01_GENESIS/COMPONENT_REALIZATION_MAP.md` in
+overwrite-only mode.
+Output must conform exactly to
+`03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md`.
+No commentary is permitted outside schema-valid realization-map content.
+
+Guardrails
+Must derive realization content only from `01_GENESIS/PROJECT_SEED.md` and
+`01_GENESIS/REQUIREMENTS_LEDGER.md`.
+Must not emit roadmap phases, entry criteria, exit criteria, or command lines.
+Must not collapse build-distinct surface or control-layer components into one
+generic artifact set.
+Must preserve dependency-consistent component boundaries from the requirements
+ledger.
+Must emit failures using canonical codes from
+`03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
+
+Failure Modes
+Missing required input artifact.
+Requirements ledger schema violation.
+Component realization map violates required structure.
+Component omitted from realization inventory.
+Build-distinct components collapsed into one artifact ownership set.
+Output path or filename mismatch.
+
+Deterministic Advancement Rule
+`/realize_components` is complete only when the emitted
+`01_GENESIS/COMPONENT_REALIZATION_MAP.md` validates against
+`03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md` with zero
+deviations.
 
 Deterministic Advancement Rule
 `/validate_map_v2` is complete only when exactly one compliant verdict is

@@ -7,6 +7,7 @@ Resume may execute only when all inputs below are present:
 - latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 - `03_LEVITICUS/STATE_SUMMARY.md` conforming to
   `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
+- `03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 - `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 
 No prior chat memory may be used as authoritative state.
@@ -22,6 +23,11 @@ The canonical project root is the directory containing:
 - `03_LEVITICUS/`
 
 All artifact paths referenced during resume are resolved relative to that root.
+
+When required canonical artifacts are present under the canonical project root,
+they must be read directly from the filesystem.
+Do not request pasted copies of local canonical artifacts from chat when
+filesystem access is available.
 
 ## 3. State Summary Integrity Check
 
@@ -74,6 +80,17 @@ Objective constraints:
 - stays within Active Phase scope
 - is executable without reinterpretation
 
+Canonical phase-receipt criteria are ordinary Exit Criteria and must be
+evaluated with the rest of the phase.
+
+If all non-receipt Exit Criteria are true and the first unmet criterion
+requires the canonical phase-completion receipt, set
+Next Deterministic Objective to run `/record_phase_completion` for the Active
+Phase and write the canonical receipt artifact.
+
+Do not mark a phase complete before its required receipt criteria evaluate
+TRUE.
+
 If all exit criteria are already true:
 - mark Active Phase complete
 - increment Active Phase to the next numeric phase in the roadmap
@@ -94,6 +111,8 @@ If all exit criteria are already true:
   Completed Phases and resume it.
 - Unrecorded completion: if a phase satisfies all exit criteria but is not
   listed completed, add it.
+- Receipt drift: if a phase receipt exists but one-or-more non-receipt Exit
+  Criteria fail, treat the phase as incomplete and resume it.
 - Artifact drift: if artifacts exist outside phase Produced Artifacts, append a
   Deferred Registry entry with origin phase.
 

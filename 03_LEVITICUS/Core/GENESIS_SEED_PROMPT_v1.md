@@ -1,8 +1,11 @@
-# GENESIS SEED PROMPT v1 - Deterministic Workflow Framework
+# GENESIS SEED PROMPT v1
 
 ## 1. Role
 
-You are generating a structured project idea document.
+Transform `01_GENESIS/IDEA.md` into `01_GENESIS/PROJECT_SEED.md` that
+conforms exactly to `03_LEVITICUS/Core/PROJECT_SEED_SCHEMA_v1.md`.
+
+You are generating a bounded bootstrap seed artifact.
 
 You are NOT generating:
 - A roadmap
@@ -13,111 +16,160 @@ You are NOT generating:
 - Resume protocol content
 - Execution sequencing
 - Implementation steps
-
-You must not reference schema mechanics or workflow phases.
+- Transformation instructions for later commands
 
 ## 2. Objective
 
-Produce a high-signal idea document suitable for later transformation into a formal roadmap.
+Produce a project-specific, structurally constrained, deterministic project
+seed that preserves only the idea details that materially constrain later
+requirements derivation and roadmap generation.
 
-The document must be:
-- Project-specific
-- Structurally constrained
-- Deterministic
-- Free of roadmap leakage
-- Faithful to verified project-defining details that materially constrain later roadmap generation
+The seed must remain faithful to verified project-defining details while
+preventing structural blending between:
+- inherited implementation foundation
+- prerequisite normalization or portability work
+- user-facing product surfaces
+- user-facing product experience invariants
+- runtime anchors and environment facts
+- behavior and policy constraints
+- mechanically verifiable success conditions
 
-## 3. Output Structure (Mandatory)
+## 3. Input Contract
 
-Output must contain ONLY the following sections in this exact order:
+Input source: `01_GENESIS/IDEA.md`.
 
-Project Intent  
-Problem Statement  
-Scope Boundaries  
-Non-Goals  
-Environment Assumptions  
-Constraints  
-Success Definition  
+Schema authority:
+`03_LEVITICUS/Core/PROJECT_SEED_SCHEMA_v1.md`.
 
-No additional sections permitted.
+If the required source artifact is missing: halt with `SCHEMA_VIOLATION`.
 
-## 4. Section Requirements
+## 4. Normalization Pass
 
-Project Intent  
-   - Describe what the project is intended to create.  
-   - Single clear objective statement.
+Before emitting output, perform a complete normalization pass over the idea.
 
-Problem Statement  
-   - Define the core problem being addressed.  
-   - No solutions or execution sequencing.
+The pass MUST account for:
+- project outcome intent
+- core problem definition
+- inherited implementation boundaries already present in the repo
+- prerequisite normalization, portability, or enabling foundation work
+- distinct user-facing product surfaces
+- distinct user-facing product experience invariants
+- runtime endpoints, collection identifiers, storage patterns, fanout rules,
+  and other exact environment anchors
+- behavior and policy rules that constrain implementation
+- explicit exclusions and non-goals
+- mechanically verifiable success conditions only
 
-Scope Boundaries  
-   - Define what is included.  
-   - Define what is explicitly excluded.
+Do not emit output until each idea detail has been normalized into exactly one
+schema-valid section role.
 
-Non-Goals  
-   - Explicitly list what this project will not attempt to solve.
+If the idea keeps structurally distinct concerns separate, preserve that
+separation in the seed. Do not compress them into broad blended prose.
 
-Environment Assumptions  
-   - Define tooling, runtime, or contextual assumptions.
-   - Preserve exact verified service endpoints, collection identifiers, storage patterns, or interface anchors when they materially constrain implementation or roadmap derivation.
+## 5. Protection Gates
 
-Constraints  
-   - Define structural, technical, or environmental limitations.
-   - Preserve verified architectural facts that restrict implementation choices, including authority boundaries, required resolution layers, or mandatory interface behavior.
+### 5.1 Section Discipline Gate
 
-Success Definition  
-   - Must contain only mechanically verifiable statements.
-   - Must use explicit observable conditions (artifact, exact string, exact count, deterministic mapping, or explicit command outcome).
-   - No qualitative language.
-   - No subjective completion terms.
+Each statement must be written into the section defined by
+`PROJECT_SEED_SCHEMA_v1`.
 
-## 5. Deterministic Success Definition Rules
+Do not place:
+- runtime endpoints or storage patterns inside intent prose
+- behavior rules inside environment assumptions
+- product-surface inventory inside problem statement prose
+- later-bootstrap instructions anywhere in the seed
 
-Each `Success Definition` bullet MUST conform to one of these forms:
+### 5.2 Separation Gate
 
-- Artifact Exists: `File exists at <path>.`
-- Anchor Present: `<path> contains the exact string: "<string>".`
-- Count Condition: `<path> contains exactly <N> instances of "<string>".`
-- Deterministic Mapping: `<Artifact A> is generated strictly from <Artifact B>.`
-- Explicit Runtime Result: `Command "<command>" exits with code 0 and emits "<anchor>" in <output path>.`
+If the idea declares any of the following as distinct concerns, they MUST
+remain separately represented in the seed:
+- inherited implementation foundation already present in the repo
+- prerequisite normalization or portability work
+- each user-facing product surface
+- each user-facing product experience invariant
+- behavior or policy rules with distinct user-visible effects
 
-Each bullet must be independently checkable without interpretation.
+Do not blend foundation, normalization, product surfaces, product experience
+invariants, runtime anchors, and behavior rules into one multi-purpose
+statement when later derivation may need to preserve those boundaries
+separately.
 
-Disallowed in `Success Definition`:
+### 5.3 Runtime Anchor Gate
 
-- qualitative words (`reliable`, `robust`, `correct`, `good`, `adequate`)
-- subjective outcomes (`works well`, `complete`, `satisfactory`)
-- non-testable claims (`without error`, `ready`, `validated`)
-- implicit expectations without structural anchor
+If the idea provides exact endpoints, collection identifiers, path layouts,
+fanout rules, or sidecar naming patterns that materially constrain later work,
+preserve them verbatim in `Environment Assumptions`.
 
-## 6. Prohibitions
+Do not generalize away verified runtime anchors.
+
+### 5.4 Success Definition Gate
+
+`Success Definition` may contain only mechanically verifiable bullets allowed by
+`PROJECT_SEED_SCHEMA_v1`.
+
+Do not emit qualitative, aesthetic, subjective, or procedural success claims.
+
+### 5.5 Product Experience Invariant Gate
+
+If the idea declares stylistic, interaction, presentation, evidence-shape,
+setup-friction, or anti-pattern language that materially constrains the
+finished product, preserve that language as atomic
+`Product Experience Invariants` bullets.
+
+Do not compress product experience intent into one generic "polished app"
+statement when the idea defines distinct user-facing invariants.
+
+### 5.6 No Transformation Leakage Gate
+
+Do not emit statements about what later commands should extract, infer,
+generate, or validate.
+
+Do not emit "next step", "transformation intent", "standard to hold", or
+similar meta-bootstrap guidance.
+
+## 6. Output Contract
+
+Output must:
+- be written only to `01_GENESIS/PROJECT_SEED.md`
+- conform exactly to `03_LEVITICUS/Core/PROJECT_SEED_SCHEMA_v1.md`
+- contain only seed content permitted by the schema
+- contain no commentary before or after the seed artifact
+
+## 7. Failure Rules
+
+If output violates the seed schema: halt with `SCHEMA_VIOLATION`.
+
+If distinct inherited-foundation, prerequisite-normalization, product-surface,
+product-experience, runtime-anchor, or behavior-rule concerns are blended into
+one statement such that later derivation cannot preserve them separately: halt
+with
+`ARCHITECTURE_COVERAGE_FAILURE`.
+
+If materially constraining product-experience language from the idea is omitted
+or collapsed into non-specific seed prose: halt with
+`ARCHITECTURE_COVERAGE_FAILURE`.
+
+If later-command instructions, roadmap leakage, or execution sequencing appear
+in the seed: halt with `SCHEMA_VIOLATION`.
+
+## 8. Prohibitions
 
 The output must NOT:
+- contain extra sections or subsection headers
+- contain roadmap phases
+- contain numbered roadmap steps
+- contain execution sequencing
+- contain validation procedures
+- contain slash commands
+- contain resume logic
+- claim completion
+- omit stylistic, presentation, or anti-pattern language when it materially
+  constrains the finished product shape
+- replace concrete verified system facts with higher-level abstraction when the
+  concrete facts affect architecture, integration, or artifact resolution
 
-- Contain phases
-- Contain numbered roadmap steps
-- Contain execution sequencing
-- Contain validation procedures
-- Contain schema references
-- Contain slash commands
-- Contain resume logic
-- Claim completion
-- Use qualitative success language
-- Use non-mechanical success criteria
-- Omit verified runtime or storage details when those details materially constrain the implementation or downstream roadmap structure
-- Replace concrete verified system facts with higher-level abstraction when the concrete facts affect architecture, integration, or artifact resolution
+## 9. Formatting Rules
 
-## 6.1 Fidelity Rules
-
-- Prefer preservation over compression for verified facts that influence implementation structure.
-- If the idea includes exact runtime endpoints, collection names, resolver mappings, storage patterns, or sidecar artifact requirements that constrain the system, include them in the appropriate section.
-- Do not generalize away a verified dependency boundary if the project depends on that boundary being true.
-- Compression is allowed only for details that do not materially affect roadmap derivation or implementation constraints.
-
-## 7. Formatting Rules
-
-- No markdown headers beyond section titles.
-- No commentary outside required sections.
-- No explanatory text before or after the document.
-- Output only the structured idea document.
+- Use only the exact section order defined by the schema.
+- Use flat bullets only where the schema permits bullets.
+- Output only the structured project seed artifact.

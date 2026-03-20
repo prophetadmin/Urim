@@ -138,41 +138,67 @@ The ledger MUST satisfy all of the following:
 2. Every item under seed `Constraints` MUST produce at least one requirement
    block with `Mandatory` = `yes`.
 
-3. If the seed explicitly defines a user-facing product surface or delivery
+3. Every item under seed `Product Experience Invariants` MUST produce at least
+   one requirement block with `Mandatory` = `yes`.
+
+4. If the seed explicitly defines a user-facing product surface or delivery
    shape (for example chat-first app, web app, API, CLI, dashboard), the
    ledger MUST include at least one `surface` requirement for that shape.
 
-4. If the seed explicitly defines a multi-step subsystem, resolver,
+5. If the seed explicitly defines a multi-step subsystem, resolver,
    orchestrator, pipeline stage, or integration boundary, the ledger MUST
    decompose that work into one-or-more `module`, `integration`, or `data`
    requirements rather than collapsing it into a single generic requirement.
 
-5. If the seed defines user-facing policies or behavior rules, the ledger MUST
+6. If the seed defines user-facing policies or behavior rules, the ledger MUST
    include one-or-more `behavior` requirements covering them.
 
-6. If the seed defines success conditions, executable checks, or proof
+7. If the seed defines success conditions, executable checks, or proof
    obligations, the ledger MUST include one-or-more `validation` requirements.
 
-7. No mandatory requirement may describe only documentation output. Mandatory
+8. If the seed defines product-experience invariants for default surface
+   behavior, evidence presentation shape, setup friction, disclosure shape, or
+   explicit anti-pattern avoidance, the ledger MUST emit one-or-more `surface`,
+   `behavior`, or `constraint` requirements that preserve those invariants
+   separately rather than collapsing them into generic surface-exists
+   requirements.
+
+9. No mandatory requirement may describe only documentation output. Mandatory
    requirements must imply implementable artifacts, executable behavior, or
    verifiable structural constraints.
 
-8. Validation obligations MUST describe executable or directly observable proof.
+10. Validation obligations MUST describe executable or directly observable proof.
    They MUST NOT be satisfiable by prose alone.
 
-9. Every mandatory requirement MUST map to one-or-more component blocks through
+11. Every mandatory requirement MUST map to one-or-more component blocks through
    `Source Requirement IDs`.
 
-10. If the seed explicitly defines a user-facing product surface, the ledger
+12. If the seed explicitly defines a user-facing product surface, the ledger
     MUST include at least one component of type `surface` for that shape.
 
-11. If the seed defines a multi-step architecture, the ledger MUST emit
+13. If the seed defines a multi-step architecture, the ledger MUST emit
     materially distinct component blocks when implementation boundaries,
     dependencies, or validation paths can diverge.
 
-12. No component may exist only as a documentation placeholder. Every
+14. No component may exist only as a documentation placeholder. Every
     component must imply concrete artifacts, runtime behavior, and executable
     validation obligations.
+
+15. If the seed states that broader product work depends on inherited
+    implementation already present in the repo, prerequisite normalization,
+    portability correction, or another enabling foundation, the ledger MUST
+    include one-or-more separate mandatory requirement blocks for that
+    foundation.
+
+16. If the seed indicates that an inherited implementation base or enabling
+    foundation may remain structurally separable from the broader application,
+    the ledger MUST preserve at least one distinct component boundary for that
+    work rather than folding it entirely into application-surface or generic
+    workflow components.
+
+17. Product surfaces and prerequisite normalization or inherited-boundary work
+    MUST remain separately represented when their implementation order,
+    dependency structure, or extraction boundaries can diverge.
 
 ## 6. Schema Authority
 

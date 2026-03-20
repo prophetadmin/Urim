@@ -1,0 +1,42 @@
+:root {
+  --chat-bg: #f4f6f8;
+  --chat-card: #ffffff;
+  --chat-border: #d8dde3;
+  --chat-text: #1b232c;
+  --chat-accent: #0f4c81;
+}
+
+body {
+  margin: 0;
+  background: var(--chat-bg);
+  color: var(--chat-text);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.chat-shell {
+  background: var(--chat-card);
+  border: 1px solid var(--chat-border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+#chat-log {
+  min-height: 200px;
+  max-height: 420px;
+  overflow: auto;
+  border: 1px solid #e3e8ee;
+  border-radius: 6px;
+  padding: 12px;
+  background: #f9fbfc;
+  white-space: pre-wrap;
+}
+
+button {
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 14px;
+  background: var(--chat-accent);
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 600;
+}

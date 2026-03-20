@@ -28,7 +28,7 @@ Authority order within this workspace:
 
 1. Filesystem state
 2. This charter
-3. Canonical project artifacts (`PROJECT_ROADMAP`, `STATE_SUMMARY`, approved canon)
+3. Canonical project artifacts (`PROJECT_ROADMAP`, `STATE_SUMMARY`, canonical phase receipts, approved canon)
 4. Chat output
 
 Chat is never authoritative.
@@ -85,7 +85,36 @@ Promotion actions must:
 
 ---
 
-## 6. Replaceability Principle
+## 6. Bootstrap Derivation Discipline
+
+Project-defining planning semantics must originate from the repository's
+Genesis idea artifacts.
+
+For this workspace, the authoritative human-authored bootstrap source is:
+- `01_GENESIS/IDEA.md`
+
+The following are derived planning artifacts:
+- `01_GENESIS/PROJECT_SEED.md`
+- `01_GENESIS/REQUIREMENTS_LEDGER.md`
+- `01_GENESIS/COMPONENT_REALIZATION_MAP.md`
+- `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
+
+During an active bootstrap run, agents may:
+- use bounded scaffold-and-backfill writes inside the artifact currently being
+  produced
+- correct bootstrap prompt or schema artifacts when explicitly authorized by
+  repository policy
+- rerun the earliest affected bootstrap stage until a schema-valid downstream
+  artifact is produced
+
+After a derived planning artifact has been successfully emitted by its
+producing bootstrap command, semantic repair must occur through regeneration
+from the earliest affected bootstrap stage rather than ad hoc manual patching
+of that completed derived artifact.
+
+---
+
+## 7. Replaceability Principle
 
 All tools and models must remain replaceable.
 
@@ -98,7 +127,7 @@ The repository remains the durable system of record.
 
 ---
 
-## 7. Change Control
+## 8. Change Control
 
 Changes to this charter require:
 - explicit revision
@@ -109,6 +138,6 @@ Silent governance drift is prohibited.
 
 ---
 
-## 8. Applicability
+## 9. Applicability
 
 This charter applies to this repository only.

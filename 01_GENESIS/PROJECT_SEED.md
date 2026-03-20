@@ -1,83 +1,60 @@
 Project Intent
-
-Create a local-first chat application that retrieves authoritative support from a personal knowledge foundation and generates grounded natural-language answers using local retrieval and local reasoning services.
+URIM App creates a repository-owned application layer that makes an existing grounded-query runtime launchable, operable, inspectable, and verifiable as a real local system without rebuilding, redefining, or absorbing that runtime's internal implementation.
 
 Problem Statement
-
-Existing local knowledge assets are not directly consultable through a conversational interface that preserves grounding in authoritative source material. The available vector retrieval layer returns nearest-neighbor hits with pointer metadata such as `tier`, `source_id`, `parent_id`, and `chunk_index`, but it does not return the readable authority text needed for grounded answers. The readable source material exists separately in boxed markdown artifacts on disk, so users cannot reliably query the local knowledge foundation through natural language unless the system resolves retrieved pointers into authoritative text and uses that resolved material as the basis for answers while clearly distinguishing strong support from weak or insufficient support.
+The existing grounded-query runtime remains external to this project, so the repository still needs its own launch path, browser-facing operating surfaces, execution routing, boxed-authority inspection, explicit disclosure and session controls, and executable validation in order to turn that runtime into a real local system that operators can use and verify without crossing the ownership boundary into runtime internals.
 
 Scope Boundaries
+Included
+- A deterministic, repository-owned launch path for the local application layer.
+- A browser-accessible chat surface for query submission and answer display.
+- A browser-accessible evidence surface for readable authority inspection.
+- A browser-accessible system or configuration surface for operator-visible runtime state.
+- Execution routing and control that forwards chat queries into the existing runtime and local services.
+- Integration with the existing runtime without decomposing or redefining its internal logic.
+- Boxed-authority resolution that reads readable authority only from boxed artifacts.
+- Session persistence and disclosure control owned by the repository application layer.
+- Executable validation that proves the runtime path, authority resolution path, and user-facing behavior path.
 
-Included:
-- A chat-first local application for natural-language querying over a local knowledge foundation.
-- Integration with the existing local llama.cpp chat API for answer generation.
-- Integration with the existing local llama.cpp embedding service for query embeddings.
-- Integration with the existing local Qdrant service for nearest-neighbor retrieval.
-- Retrieval against the Qdrant collection `emb_v2_nomic_embed_text_v1_5_f16_768`.
-- Resolution of Qdrant hit metadata into boxed markdown authority content on disk by `tier` and `source_id`.
-- Resolver support for the verified boxed authority patterns `D:\boxed\TierL_EB\<source_id>\<source_id>.md` and `D:\boxed\Tier2\<source_id>\<source_id>.md`.
-- Use of resolved authority content, rather than Qdrant payload text alone, as the readable basis for answer generation.
-- Explicit handling of strong, partial, weak, and insufficient support states in user-facing answers.
-- Source disclosure in chat only when the user requests sources.
-- User-triggered session saving.
-
-Excluded:
-- Internal model switching or model orchestration logic.
-- Automatic source dumps in every answer.
-- Automatic persistence of every chat session.
-- A desktop-native first implementation.
-- Finalization of Wikipedia boxed storage handling.
-- Long-term storage repacking strategy for very large boxed corpora.
+Excluded
+- Defining the internal implementation of the existing grounded-query runtime.
+- Rebuilding the existing runtime instead of integrating with it.
+- Claiming ownership of the existing runtime's internal modules, structure, or artifacts.
 
 Non-Goals
-
-- Build a general-purpose ungrounded chat assistant.
-- Build a full analyst or debugging console in the first pass.
-- Replace semantic retrieval with Lexicon-only lookup behavior.
-- Make Qdrant the readable authority text store.
-- Solve long-term storage layout optimization in the first pass.
-- Implement internal UI or service controls for switching local models.
+- Absorbing the existing runtime into this repository as a project-owned implementation boundary.
 
 Environment Assumptions
-
-- A local llama.cpp chat service is available on `127.0.0.1:8081`.
-- A local llama.cpp embedding service is available on `127.0.0.1:8084`.
-- The embedding service exposes `POST /embedding`.
-- A local Qdrant service is available on `127.0.0.1:6333`.
-- The Qdrant collection `emb_v2_nomic_embed_text_v1_5_f16_768` is available.
-- Readable authority content for tested non-Wikipedia tiers exists as boxed markdown artifacts on local disk.
-- Verified boxed authority paths include `D:\boxed\TierL_EB\<source_id>\<source_id>.md` and `D:\boxed\Tier2\<source_id>\<source_id>.md`.
-- Associated boxed sidecar artifacts include `<source_id>.meta.json` and `<source_id>.sha256`.
-- Boxed authority artifacts are addressable by `tier` and `source_id`.
-- The first implementation can be delivered as a locally hosted web application.
+- An existing grounded-query runtime already exists outside the project-owned application layer.
+- Local services required by the application layer are available to repository-owned integration artifacts during execution.
+- Readable authority content can be resolved from boxed artifacts rather than opaque runtime memory.
+- Qdrant is available to the system as a locator layer and not as the readable authority surface.
 
 Constraints
+- The application layer must explicitly wire into the existing runtime and local services without redefining the runtime's internal logic.
+- No requirement, component, or roadmap phase may assign ownership to the internal artifacts of the existing runtime.
+- No component may represent the internal structure of the existing runtime.
+- No roadmap phase may claim files from the existing runtime as produced outputs.
+- The query path must route through a repository-owned execution routing and control layer before invoking the existing runtime and local services.
+- Readable authority must be resolved exclusively from boxed artifacts.
+- The application layer must expose truthful failure states when any part of the runtime path breaks.
 
-- The application must use the currently exposed local llama.cpp chat API.
-- The application must use the currently exposed local llama.cpp embedding service.
-- The application must not implement internal model switching.
-- Retrieval must treat Qdrant results as pointer metadata rather than final readable answer text.
-- Resolver behavior must consume retrieval metadata including `tier`, `source_id`, `parent_id`, and `chunk_index` when mapping retrieval hits to readable authority material.
-- Answer generation must use resolved boxed authority content as the readable source basis.
-- Qdrant must remain a vector locator rather than the authority text store.
-- Stable identity continuity through `source_id` and tier mapping must remain valid even if physical storage roots move.
-- Lexicon behavior, if present, must remain advisory and must not replace semantic retrieval or hard-block retrieval when it contributes no useful narrowing.
-- The application must state when support is partial, weak, or insufficient instead of presenting unsupported claims as grounded answers.
-- Source disclosure must be optional and user-triggered in chat.
-- Session persistence must be user-triggered.
+Product Experience Invariants
+- The finished system must be launchable and operable as a real local system rather than a hidden runtime entry point.
+- Chat, evidence, and system or configuration views must remain separate browser-accessible surfaces.
+- Evidence inspection must present readable authority and stable source identity rather than opaque locator-only payloads.
+- Source disclosure must happen only when explicitly requested.
+- Session persistence must happen only through explicit user action.
 
 Success Definition
-
-- File exists at 01_GENESIS/PROJECT_SEED.md.
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "Create a local-first chat application that retrieves authoritative support from a personal knowledge foundation and generates grounded natural-language answers using local retrieval and local reasoning services."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "A local llama.cpp chat service is available on `127.0.0.1:8081`."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "A local llama.cpp embedding service is available on `127.0.0.1:8084`."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "The embedding service exposes `POST /embedding`."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "A local Qdrant service is available on `127.0.0.1:6333`."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "The Qdrant collection `emb_v2_nomic_embed_text_v1_5_f16_768` is available."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "Verified boxed authority paths include `D:\boxed\TierL_EB\<source_id>\<source_id>.md` and `D:\boxed\Tier2\<source_id>\<source_id>.md`."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "Associated boxed sidecar artifacts include `<source_id>.meta.json` and `<source_id>.sha256`."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "Resolver behavior must consume retrieval metadata including `tier`, `source_id`, `parent_id`, and `chunk_index` when mapping retrieval hits to readable authority material."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "Qdrant must remain a vector locator rather than the authority text store."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "Source disclosure must be optional and user-triggered in chat."
-- 01_GENESIS/PROJECT_SEED.md contains the exact string: "Session persistence must be user-triggered."
+- File exists at 02_EXODUS/runtime/surface/app_shell.html.
+- File exists at 02_EXODUS/runtime/surface/chat_app.html.
+- File exists at 02_EXODUS/runtime/surface/evidence_panel.html.
+- File exists at 02_EXODUS/runtime/surface/system_config_panel.html.
+- File exists at 02_EXODUS/runtime/workflow/query_orchestrator.js.
+- File exists at 02_EXODUS/runtime/resolver/boxed_authority_resolver.js.
+- File exists at 02_EXODUS/runtime/session/session_store.js.
+- 02_EXODUS/runtime/workflow/query_orchestrator.js contains the exact string: "vector_locator_only".
+- 02_EXODUS/runtime/session/session_store.js contains the exact string: "user_triggered_save".
+- File exists at 02_EXODUS/tests/validation_harness.ps1.
+- Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/validation_harness.ps1" exits with code 0 and emits "PASS" in stdout.

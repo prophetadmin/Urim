@@ -1,25 +1,28 @@
-### `03_LEVITICUS/STATE_SUMMARY.md`
-
 **Active Phase**
 4
 
 **Roadmap Version**
-v2
+v1
 
 **Completed Phases**
 - 1
 - 2
 - 3
-- 4
 
 **Current Work Artifact**
-05_NUMBERS/SESSION_2026-03-13.md
+02_EXODUS/tests/e2e_grounded_query_validation.ps1
 
 **Open Risks**
-- Host PowerShell execution policy may block direct `powershell -NoProfile -File <script>` validation commands without process-scoped bypass.
-- No further phase exists after Phase 4 in roadmap `v2`; additional implementation requires explicit roadmap revision intent.
+- Validation-phase command exit-code evidence is session-ephemeral and cannot be derived from filesystem state alone during a fresh resume.
+- Validation phase has no canonical receipt artifact, so completion remains dependent on direct command re-proof.
 
 **Deferred Registry**
+- ID: DR-001
+  Origin Phase: 4
+  Description: Validation command evidence for terminal phase completion is session-ephemeral.
+  Reason: Command exit criteria cannot be derived from file state alone during a fresh resume.
+  Re-entry Phase: 4
+  Status: Open
 
 **Next Deterministic Objective**
-Run `/summarize_session` to emit a timestamped `05_NUMBERS/SESSION_<YYYY-MM-DD>_<INTEGER>.md` artifact capturing Phase 4 completion outcomes and remaining execution risks.
+Run `powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/e2e_grounded_query_validation.ps1` and require exit code 0.
