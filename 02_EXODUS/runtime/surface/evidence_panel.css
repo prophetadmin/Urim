@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f8;
+  color: #1b232c;
+}
+
+.evidence-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid #d8dde3;
+}
+
+.evidence-table th,
+.evidence-table td {
+  border: 1px solid #e3e8ee;
+  padding: 8px 10px;
+  text-align: left;
+}
