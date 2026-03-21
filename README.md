@@ -1,41 +1,23 @@
 # URIM
 
-This is the canonical URIM repository.
+# URIM
 
-It preserves merged history from two connected lines:
+URIM is a grounded retrieval system for answering questions against authoritative boxed knowledge artifacts.
 
-- the earlier URIM line
-- the later runtime-completion continuation line, which inherited earlier URIM
-  EXODUS material and advanced the project further
+URIM was developed using the [MetaDictum](https://github.com/prophetadmin/MetaDictum) framework.
 
-These lines are not competing active products. History is plural, but authority
-at HEAD is singular.
+It is designed to retrieve relevant material, resolve that material back to readable authority sources, and present answers that remain tied to inspectable evidence rather than treating model output as authority by itself.
 
-## Historical Context
+This repository is the canonical product repository for the current URIM runtime and implementation surface.
 
-The earlier line reflects execution under MetaDictum Framework v1.
+## What URIM Does
 
-The later runtime-completion line was not a MetaDictum v2-governed run. It is
-the execution record from which hardening observations were gathered, and those
-observations later contributed to what became MetaDictum v2.
+URIM is intended to:
 
-That continuation line remains significant because it established the runnable
-local app path, surfaced live operational gaps, and materially advanced the
-project beyond the earlier line.
-
-## Active Authority At HEAD
-
-The single canonical active roadmap at HEAD is:
-`03_LEVITICUS/PROJECT_ROADMAP_v1.md`
-
-`03_LEVITICUS/STATE_SUMMARY.md` remains aligned to that roadmap.
-
-Canonical phase receipts under `03_LEVITICUS/Execution/` remain the active
-execution evidence for completed phases.
-
-`03_LEVITICUS/Historical/PROJECT_ROADMAP_v2_DERIVATIONAL_PROVENANCE.md` is
-preserved as historical derivational provenance and is not active execution
-authority at HEAD.
+- retrieve relevant material from the local knowledge layer
+- resolve retrieval results back to readable authority artifacts
+- support grounded question-answering against governed local data
+- expose a runnable local application surface for exercising that flow
 
 ## Runtime Entry Path
 
@@ -43,18 +25,42 @@ Launch the local app with:
 
 `powershell -ExecutionPolicy Bypass -File 02_EXODUS/runtime/start_local_app.ps1`
 
-The Node host serves the application at:
+The local host serves the application at:
 
 `http://127.0.0.1:8787/app_shell.html`
 
 Primary runtime entry files:
+
 - `02_EXODUS/runtime/start_local_app.ps1`
 - `02_EXODUS/runtime/host/local_app_host.js`
 - `02_EXODUS/runtime/surface/app_shell.html`
 - `02_EXODUS/runtime/surface/chat_app.html`
 
-## Repository Role
+## Repository Structure
 
-This repository is the canonical product repository for URIM. It preserves
-origin, continuation, governance, evidence, and runtime implementation in one
-place without rewriting the historical record.
+- `01_GENESIS/` holds bootstrap-source and derived planning inputs
+- `02_EXODUS/` holds runtime code, tests, and mutable implementation artifacts
+- `03_LEVITICUS/` holds governance, execution state, roadmap, and canonical receipts
+- `04_DEUTERONOMY/` holds approved canon and durable summaries when promoted
+- `05_NUMBERS/` holds forensic logs and decision-trail artifacts
+
+## Active Authority At HEAD
+
+The single canonical active roadmap at HEAD is:
+
+`03_LEVITICUS/PROJECT_ROADMAP_v1.md`
+
+`03_LEVITICUS/STATE_SUMMARY.md` remains aligned to that roadmap.
+
+Canonical phase receipts under `03_LEVITICUS/Execution/` remain the active execution evidence for completed phases.
+
+Project governance is defined by:
+
+- `AGENTS.md`
+- `03_LEVITICUS/Contracts/project_charter.md`
+
+## Historical Context
+
+Repository lineage and historical provenance are documented separately in:
+
+`REPOSITORY_HISTORY.md`
